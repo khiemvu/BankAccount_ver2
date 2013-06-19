@@ -6,8 +6,9 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import static com.sun.javaws.JnlpxArgs.verify;
+
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.verify;
 
 /**
  * Created with IntelliJ IDEA.
@@ -26,7 +27,7 @@ public class TestBankAccount {
     }
     @Test
     public void testOpenBankAccount(){
-        BankAccount account = new BankAccount("0123456789");
+        BankAccountService.openAccount("0123456789");
 
         ArgumentCaptor<BankAccount> argumentRecord = ArgumentCaptor.forClass(BankAccount.class);
         verify(bankAccountDAO).saveAccount(argumentRecord.capture());
