@@ -36,12 +36,13 @@ public class TestBankAccount {
     }
     @Test
     public void testGetInfoBankAccount(){
-        BankAccount account = BankAccountService.openAccount("0123456789");
+
+        BankAccount account = BankAccountService.getInfoAccount("0123456789");
 
         ArgumentCaptor<BankAccount> argumentRecord = ArgumentCaptor.forClass(BankAccount.class);
 
         when(bankAccountDAO.getAccount("0123456789")).thenReturn(account);
         verify(bankAccountDAO).getAccount("0123456789");
-        assertEquals(account.getBalance(), argumentRecord.getValue().getBalance(), 0.01);
+        assertEquals(0, 0.01, account.getBalance());
     }
 }
