@@ -14,6 +14,8 @@ public class BankAccountService {
     }
 
     public static BankAccount openAccount(String accNumber) {
-        return null;  //To change body of created methods use File | Settings | File Templates.
+        BankAccount bankAccount = new BankAccount(accNumber);
+        bankAccountDAO.saveAccount(bankAccount);
+        return bankAccount;  //To change body of created methods use File | Settings | File Templates.
     }
 }

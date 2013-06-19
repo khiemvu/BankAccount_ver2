@@ -31,6 +31,6 @@ public class TestBankAccount {
 
         ArgumentCaptor<BankAccount> argumentRecord = ArgumentCaptor.forClass(BankAccount.class);
         verify(bankAccountDAO).saveAccount(argumentRecord.capture());
-        assertEquals(0.0, argumentRecord.getValue().getBalance());
+        assertEquals(0, argumentRecord.getValue().getBalance(), 0.01);
     }
 }
