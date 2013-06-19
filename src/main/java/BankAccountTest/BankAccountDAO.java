@@ -11,4 +11,8 @@ public class BankAccountDAO {
     public BankAccount saveAccount(BankAccount capture) {
         return null;  //To change body of created methods use File | Settings | File Templates.
     }
+
+    public BankAccount getAccount(String accNumber) {
+        return null;  //To change body of created methods use File | Settings | File Templates.
+    }
 }

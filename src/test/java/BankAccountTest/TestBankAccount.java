@@ -9,6 +9,7 @@ import org.mockito.MockitoAnnotations;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  * Created with IntelliJ IDEA.
@@ -32,5 +33,15 @@ public class TestBankAccount {
         ArgumentCaptor<BankAccount> argumentRecord = ArgumentCaptor.forClass(BankAccount.class);
         verify(bankAccountDAO).saveAccount(argumentRecord.capture());
         assertEquals(0, argumentRecord.getValue().getBalance(), 0.01);
+    }
+    @Test
+    public void testGetInfoBankAccount(){
+        BankAccount account = BankAccountService.openAccount("0123456789");
+
+        ArgumentCaptor<BankAccount> argumentRecord = ArgumentCaptor.forClass(BankAccount.class);
+
+        when(bankAccountDAO.getAccount("0123456789")).thenReturn(account);
+        verify(bankAccountDAO).getAccount("0123456789");
+        assertEquals(account.getBalance(), argumentRecord.getValue().getBalance(), 0.01);
     }
 }
