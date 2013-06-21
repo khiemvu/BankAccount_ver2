@@ -45,5 +45,13 @@ public class TestBankAccount {
 
         assertEquals(0.0, account.getBalance(),0.01);
     }
+    @Test
+    public void testTransactionDeposit(){
 
+        BankAccountService.deposit("0123456789", 100.0, "deposit");
+        ArgumentCaptor<BankAccount> argumentCaptor = ArgumentCaptor.forClass(BankAccount.class);
+        verify(bankAccountDAO).saveAccount(argumentCaptor.capture());
+        assertEquals(100, argumentCaptor.getValue().getBalance(),0.01);
+        assertEquals("deposit", argumentCaptor.getValue().getDes());
+    }
 }

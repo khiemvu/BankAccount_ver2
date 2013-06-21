@@ -10,6 +10,7 @@ package BankAccountTest;
 public class BankAccount {
     String number;
     double amount;
+    String des;
 
     public BankAccount(String accNumber) {
         this.number = accNumber;
@@ -24,5 +25,9 @@ public class BankAccount {
     }
     public String getNumberAccount(){
         return this.number;
+    }
+
+    public String getDes() {
+        return this.des;  //To change body of created methods use File | Settings | File Templates.
     }
 }

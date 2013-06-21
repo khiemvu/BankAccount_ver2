@@ -21,4 +21,10 @@ public class BankAccountService {
     public static BankAccount getInfoAccount(String accNumber){
         return bankAccountDAO.getAccount(accNumber);
     }
+
+    public static BankAccount deposit(String accNumber, double amount, String deposit) {
+        BankAccount account = getInfoAccount(accNumber);
+
+        return null;  //To change body of created methods use File | Settings | File Templates.
+    }
 }
