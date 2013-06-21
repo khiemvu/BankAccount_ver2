@@ -30,4 +30,8 @@ public class BankAccount {
     public String getDes() {
         return this.des;  //To change body of created methods use File | Settings | File Templates.
     }
+
+    public void setDes(String des) {
+        this.des = des;//To change body of created methods use File | Settings | File Templates.
+    }
 }
