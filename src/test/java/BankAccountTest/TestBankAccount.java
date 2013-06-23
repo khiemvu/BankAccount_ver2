@@ -48,7 +48,7 @@ public class TestBankAccount {
     @Test
     public void testTransactionDeposit(){
         BankAccount account = BankAccountService.openAccount("0123456789");
-        when(BankAccountService.getInfoAccount("0123456789")).thenReturn(account);
+        when(bankAccountDAO.getAccount("0123456789")).thenReturn(account);
         BankAccountService.deposit("0123456789", 100.0, "deposit");
 
         ArgumentCaptor<BankAccount> argumentCaptor = ArgumentCaptor.forClass(BankAccount.class);
@@ -56,6 +56,21 @@ public class TestBankAccount {
 
         List<BankAccount> listAccount = argumentCaptor.getAllValues();
         assertEquals("deposit", listAccount.get(1).getDes());
-        //assertEquals(100, listAccount.get(1).getBalance(),0.01);
+        assertEquals(100, argumentCaptor.getValue().getBalance(),0.01);
     }
+    @Test
+    public void testTransactionWithdraw(){
+        BankAccount account = BankAccountService.openAccount("0123456789");
+        when(bankAccountDAO.getAccount("0123456789")).thenReturn(account);
+        BankAccountService.deposit("0123456789", 100.0, "deposit");
+        BankAccountService.withdraw("0123456789", 50.0, "withdraw");
+
+        ArgumentCaptor<BankAccount> argumentCaptor = ArgumentCaptor.forClass(BankAccount.class);
+        verify(bankAccountDAO, times(3)).saveAccount(argumentCaptor.capture());
+
+        List<BankAccount> listAccount = argumentCaptor.getAllValues();
+        assertEquals("withdraw", listAccount.get(2).getDes());
+        assertEquals(50, listAccount.get(2).getBalance(),0.01);
+    }
+
 }

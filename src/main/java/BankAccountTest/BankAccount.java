@@ -21,7 +21,7 @@ public class BankAccount {
         this.amount = amount;
     }
     public double getBalance() {
-        return 0;  //To change body of created methods use File | Settings | File Templates.
+        return this.amount;  //To change body of created methods use File | Settings | File Templates.
     }
     public String getNumberAccount(){
         return this.number;
