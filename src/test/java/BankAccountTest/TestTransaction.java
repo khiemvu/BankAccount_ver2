@@ -76,5 +76,21 @@ public class TestTransaction {
         assertEquals(1000, listTransaction.get(0).getBalace(), 0.01);
         assertEquals(2000L, listTransaction.get(1).getTime());
     }
+    @Test
+    public void testGetNTransactionNew(){
+
+        TransactionService.doTransaction("0123456789", 1000L, 1000, "deposit");
+        TransactionService.doTransaction("0123456789", 2000L, 500, "withdraw");
+        TransactionService.doTransaction("0123456789", 3000L, 300, "withdraw");
+
+        ArgumentCaptor<Transaction> argument = ArgumentCaptor.forClass(Transaction.class);
+        verify(transactionDAO,times(3)).save(argument.capture());
+        List<Transaction> listTransaction = argument.getAllValues();
+        when(transactionDAO.getAllTransaction("0123456789", 3)).thenReturn(listTransaction);
+
+        assertEquals(3, listTransaction.size());
+        assertEquals(500, listTransaction.get(1).getBalace(), 0.01);
+        assertEquals(3000L, listTransaction.get(2).getTime());
+    }
 
 }
