@@ -19,4 +19,10 @@ public class TransactionService {
         transactionDAO.save(transaction);
         return transaction;
     }
+
+    public static Transaction withdraw(String accNumber, long time, int amount, String withdraw) {
+        Transaction transaction = new Transaction(accNumber, time, amount, withdraw);
+        transactionDAO.save(transaction);
+        return transaction;//To change body of created methods use File | Settings | File Templates.
+    }
 }

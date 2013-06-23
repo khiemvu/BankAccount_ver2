@@ -21,4 +21,8 @@ public class Transaction {
     public long getTime() {
         return this.time;  //To change body of created methods use File | Settings | File Templates.
     }
+
+    public double getBalace() {
+        return this.amount;  //To change body of created methods use File | Settings | File Templates.
+    }
 }
