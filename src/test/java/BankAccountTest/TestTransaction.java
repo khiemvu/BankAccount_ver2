@@ -40,4 +40,15 @@ public class TestTransaction {
 
         assertEquals(100L, argumentCaptor.getValue().getTime());
     }
+    @Test
+    public void testSaveTimeWhenTransactionWithdraw(){
+        when(time.getTime()).thenReturn(100L);
+
+        TransactionService.withdraw("0123456789", 100L, 100, "withdraw");
+        ArgumentCaptor<Transaction> argumentCaptor = ArgumentCaptor.forClass(Transaction.class);
+        verify(transactionDAO).save(argumentCaptor.capture());
+
+        assertEquals(100L, argumentCaptor.getValue().getTime());
+        assertEquals(100, argumentCaptor.getValue().getBalace(), 0.01);
+    }
 }
