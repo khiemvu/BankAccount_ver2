@@ -8,7 +8,17 @@ package BankAccountTest;
  * To change this template use File | Settings | File Templates.
  */
 public class Transaction {
+    private Long time;
+    private String accNumber;
+    private String des;
+    private double amount;
+    Transaction(String accNumber, Long time, double amount, String des){
+        this.accNumber = accNumber;
+        this.time = time;
+        this.amount = amount;
+        this.des = des;
+    }
     public long getTime() {
-        return 0;  //To change body of created methods use File | Settings | File Templates.
+        return this.time;  //To change body of created methods use File | Settings | File Templates.
     }
 }

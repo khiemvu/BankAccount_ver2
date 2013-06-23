@@ -14,7 +14,9 @@ public class TransactionService {
         //To change body of created methods use File | Settings | File Templates.
     }
 
-    public static void deposit(String accNumber, long time, double amount, String deposit) {
-        //To change body of created methods use File | Settings | File Templates.
+    public static Transaction deposit(String accNumber, long time, double amount, String deposit) {
+        Transaction transaction = new Transaction(accNumber, time, amount, deposit);//To change body of created methods use File | Settings | File Templates.
+        transactionDAO.save(transaction);
+        return transaction;
     }
 }
