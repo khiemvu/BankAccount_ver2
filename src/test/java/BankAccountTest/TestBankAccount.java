@@ -29,7 +29,7 @@ public class TestBankAccount {
     }
     @Test
     public void testOpenBankAccount(){
-        BankAccountService.openAccount("0123456789");
+        BankAccountService.openAccount("0123456789", 1000L);
 
         ArgumentCaptor<BankAccount> argumentRecord = ArgumentCaptor.forClass(BankAccount.class);
         verify(bankAccountDAO).saveAccount(argumentRecord.capture());
@@ -37,7 +37,7 @@ public class TestBankAccount {
     }
     @Test
     public void testGetInfoBankAccount(){
-        BankAccount account = BankAccountService.openAccount("0123456789");
+        BankAccount account = BankAccountService.openAccount("0123456789", 1000L);
         BankAccountService.getInfoAccount("0123456789");
 
         ArgumentCaptor<BankAccount> argumentRecord = ArgumentCaptor.forClass(BankAccount.class);
@@ -49,7 +49,7 @@ public class TestBankAccount {
 
     @Test
     public void testTransaction(){
-        BankAccount account = BankAccountService.openAccount("0123456789");
+        BankAccount account = BankAccountService.openAccount("0123456789", 1000L);
         when(bankAccountDAO.getAccount("0123456789")).thenReturn(account);
         BankAccountService.doTransaction("0123456789", 100.0, "deposit");
 
@@ -78,7 +78,7 @@ public class TestBankAccount {
 
         Assert.assertEquals(0.0, argumentData.getValue().getBalance());
         Assert.assertEquals("0123456789", argumentData.getValue().getNumberAccount());
-        Assert.assertEquals(100L, argumentData.getValue().getTime());
+        Assert.assertEquals(1000L, argumentData.getValue().getTime());
     }
 
 }

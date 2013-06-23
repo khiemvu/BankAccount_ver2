@@ -13,8 +13,8 @@ public class BankAccountService {
         return BankAccountService.bankAccountDAO = bankAccountDAO;  //To change body of created methods use File | Settings | File Templates.
     }
 
-    public static BankAccount openAccount(String accNumber) {
-        BankAccount bankAccount = new BankAccount(accNumber);
+    public static BankAccount openAccount(String accNumber, long timestamp) {
+        BankAccount bankAccount = new BankAccount(accNumber, timestamp);
         bankAccountDAO.saveAccount(bankAccount);
         return bankAccount;  //To change body of created methods use File | Settings | File Templates.
     }
@@ -37,4 +37,5 @@ public class BankAccountService {
         bankAccountDAO.saveAccount(account);
         return account;  //To change body of created methods use File | Settings | File Templates.
     }
+
 }
