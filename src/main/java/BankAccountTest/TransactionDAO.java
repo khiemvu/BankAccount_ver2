@@ -8,4 +8,7 @@ package BankAccountTest;
  * To change this template use File | Settings | File Templates.
  */
 public class TransactionDAO {
+    public Transaction save(Transaction capture) {
+        return null;  //To change body of created methods use File | Settings | File Templates.
+    }
 }

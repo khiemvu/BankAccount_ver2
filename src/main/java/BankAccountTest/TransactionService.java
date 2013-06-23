@@ -13,4 +13,8 @@ public class TransactionService {
         TransactionService.transactionDAO = transactionDAO;
         //To change body of created methods use File | Settings | File Templates.
     }
+
+    public static void deposit(String accNumber, long time, double amount, String deposit) {
+        //To change body of created methods use File | Settings | File Templates.
+    }
 }
