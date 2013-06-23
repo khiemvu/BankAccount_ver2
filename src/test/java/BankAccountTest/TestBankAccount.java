@@ -1,5 +1,6 @@
 package BankAccountTest;
 
+import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
@@ -67,6 +68,17 @@ public class TestBankAccount {
 
         assertEquals("withdraw", listAccount.get(2).getDes());
         assertEquals(50, listAccount.get(2).getBalance(),0.01);
+    }
+    @Test
+    public void testSaveTimestampWhenOpenAccount(){
+        BankAccountService.openAccount("0123456789", 1000L);
+
+        ArgumentCaptor<BankAccount> argumentData = ArgumentCaptor.forClass(BankAccount.class);
+        verify(bankAccountDAO).saveAccount(argumentData.capture());
+
+        Assert.assertEquals(0.0, argumentData.getValue().getBalance());
+        Assert.assertEquals("0123456789", argumentData.getValue().getNumberAccount());
+        Assert.assertEquals(100L, argumentData.getValue().getTime());
     }
 
 }

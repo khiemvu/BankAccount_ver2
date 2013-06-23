@@ -11,10 +11,12 @@ public class BankAccount {
     String number;
     double amount;
     String des;
+    private long timestamp;
 
-    public BankAccount(String accNumber) {
+    public BankAccount(String accNumber, long timestamp) {
         this.number = accNumber;
         this.amount = 0;
+        this.timestamp = timestamp;
     }
 
     public void setBalance(double amount){
@@ -33,5 +35,9 @@ public class BankAccount {
 
     public void setDes(String des) {
         this.des = des;//To change body of created methods use File | Settings | File Templates.
+    }
+
+    public long getTime() {
+        return this.timestamp;  //To change body of created methods use File | Settings | File Templates.
     }
 }
