@@ -1,10 +1,16 @@
 package BankAccountTest;
 
 import org.junit.Before;
+import org.junit.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import javax.xml.crypto.Data;
+import java.util.Date;
+
+import static junit.framework.Assert.assertEquals;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  * Created with IntelliJ IDEA.
@@ -15,7 +21,7 @@ import javax.xml.crypto.Data;
  */
 public class TestTransaction {
     @Mock
-    private Data time;
+    private Date time;
     @Mock
     private TransactionDAO transactionDAO;
 
@@ -23,5 +29,15 @@ public class TestTransaction {
     public void init(){
         MockitoAnnotations.initMocks(this);
         TransactionService.initData(transactionDAO);
+    }
+    @Test
+    public void testSaveTimeWhenTransactionDeposit(){
+        when(time.getTime()).thenReturn(100L);
+
+        TransactionService.deposit("0123456789", 100L, 100, "deposit");
+        ArgumentCaptor<Transaction> argumentCaptor = ArgumentCaptor.forClass(Transaction.class);
+        verify(transactionDAO).save(argumentCaptor.capture());
+
+        assertEquals(100L, argumentCaptor.getValue().getTime());
     }
 }
