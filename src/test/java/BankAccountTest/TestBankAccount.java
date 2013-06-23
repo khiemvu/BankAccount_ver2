@@ -45,29 +45,24 @@ public class TestBankAccount {
 
         assertEquals(0.0, account.getBalance(), 0.01);
     }
+
     @Test
-    public void testTransactionDeposit(){
+    public void testTransaction(){
         BankAccount account = BankAccountService.openAccount("0123456789");
         when(bankAccountDAO.getAccount("0123456789")).thenReturn(account);
-        BankAccountService.deposit("0123456789", 100.0, "deposit");
+        BankAccountService.doTransaction("0123456789", 100.0, "deposit");
 
-        ArgumentCaptor<BankAccount> argumentCaptor = ArgumentCaptor.forClass(BankAccount.class);
-        verify(bankAccountDAO, times(2)).saveAccount(argumentCaptor.capture());
+        ArgumentCaptor<BankAccount> argument = ArgumentCaptor.forClass(BankAccount.class);
+        verify(bankAccountDAO,times(2)).saveAccount(argument.capture());
+        List<BankAccount> listAccount1 = argument.getAllValues();
 
-        List<BankAccount> listAccount = argumentCaptor.getAllValues();
-        assertEquals("deposit", listAccount.get(1).getDes());
-        assertEquals(100, argumentCaptor.getValue().getBalance(),0.01);
-    }
-    @Test
-    public void testTransactionWithdraw(){
-        BankAccount account = BankAccountService.openAccount("0123456789");
-        when(bankAccountDAO.getAccount("0123456789")).thenReturn(account);
-        BankAccountService.deposit("0123456789", 100.0, "deposit");
-        BankAccountService.withdraw("0123456789", 50.0, "withdraw");
+        assertEquals("deposit", listAccount1.get(1).getDes());
+        assertEquals(100, listAccount1.get(1).getBalance(),0.01);
 
+
+        BankAccountService.doTransaction("0123456789", -50.0, "withdraw");
         ArgumentCaptor<BankAccount> argumentCaptor = ArgumentCaptor.forClass(BankAccount.class);
         verify(bankAccountDAO, times(3)).saveAccount(argumentCaptor.capture());
-
         List<BankAccount> listAccount = argumentCaptor.getAllValues();
 
         assertEquals("withdraw", listAccount.get(2).getDes());

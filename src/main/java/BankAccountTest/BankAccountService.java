@@ -22,18 +22,18 @@ public class BankAccountService {
         return bankAccountDAO.getAccount(accNumber);
     }
 
-    public static BankAccount deposit(String accNumber, double amount, String deposit) {
-        BankAccount account = getInfoAccount(accNumber);
-        account.setBalance(account.getBalance()+ amount);
-        account.setDes(deposit);
-        bankAccountDAO.saveAccount(account);
-        return account;  //To change body of created methods use File | Settings | File Templates.
-    }
+//    public static BankAccount deposit(String accNumber, double amount, String deposit) {
+//        BankAccount account = getInfoAccount(accNumber);
+//        account.setBalance(account.getBalance()+ amount);
+//        account.setDes(deposit);
+//        bankAccountDAO.saveAccount(account);
+//        return account;  //To change body of created methods use File | Settings | File Templates.
+//    }
 
-    public static BankAccount withdraw(String accNumber, double amount, String withdraw) {
+    public static BankAccount doTransaction(String accNumber, double amount, String des) {
         BankAccount account = getInfoAccount(accNumber);
-        account.setBalance(account.getBalance()-amount);
-        account.setDes(withdraw);
+        account.setBalance(account.getBalance()+amount);
+        account.setDes(des);
         bankAccountDAO.saveAccount(account);
         return account;  //To change body of created methods use File | Settings | File Templates.
     }
