@@ -29,4 +29,12 @@ public class BankAccountService {
         bankAccountDAO.saveAccount(account);
         return account;  //To change body of created methods use File | Settings | File Templates.
     }
+
+    public static BankAccount withdraw(String accNumber, double amount, String withdraw) {
+        BankAccount account = getInfoAccount(accNumber);
+        account.setBalance(account.getBalance()-amount);
+        account.setDes(withdraw);
+        bankAccountDAO.saveAccount(account);
+        return account;  //To change body of created methods use File | Settings | File Templates.
+    }
 }

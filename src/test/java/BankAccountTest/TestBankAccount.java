@@ -69,6 +69,7 @@ public class TestBankAccount {
         verify(bankAccountDAO, times(3)).saveAccount(argumentCaptor.capture());
 
         List<BankAccount> listAccount = argumentCaptor.getAllValues();
+
         assertEquals("withdraw", listAccount.get(2).getDes());
         assertEquals(50, listAccount.get(2).getBalance(),0.01);
     }
