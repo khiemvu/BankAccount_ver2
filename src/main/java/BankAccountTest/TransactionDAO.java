@@ -21,4 +21,8 @@ public class TransactionDAO {
     public List<Transaction> getAllTransaction(String accNumber, long timestart, long timestop) {
         return null;  //To change body of created methods use File | Settings | File Templates.
     }
+
+    public List<Transaction> getAllTransaction(String accNumber, int numberTransaction) {
+        return null;  //To change body of created methods use File | Settings | File Templates.
+    }
 }
