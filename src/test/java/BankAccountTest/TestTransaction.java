@@ -49,9 +49,7 @@ public class TestTransaction {
     @Test
     public void testGetAllTransactionOfBankAccount(){
 
-        when(time.getTime()).thenReturn(1000L);
         TransactionService.doTransaction("0123456789", 1000L, 100, "deposit");
-        when(time.getTime()).thenReturn(2000L);
         TransactionService.doTransaction("0123456789", 2000L, 50, "withdraw");
 
         ArgumentCaptor<Transaction> argument = ArgumentCaptor.forClass(Transaction.class);
@@ -61,6 +59,21 @@ public class TestTransaction {
 
         assertEquals(2, listTransaction.size());
         assertEquals(100, listTransaction.get(0).getBalace(), 0.01);
+        assertEquals(2000L, listTransaction.get(1).getTime());
+    }
+    @Test
+    public void testGetListTransactionInAboutTime(){
+
+        TransactionService.doTransaction("0123456789", 1000L, 1000, "deposit");
+        TransactionService.doTransaction("0123456789", 2000L, 500, "withdraw");
+
+        ArgumentCaptor<Transaction> argument = ArgumentCaptor.forClass(Transaction.class);
+        verify(transactionDAO,times(2)).save(argument.capture());
+        List<Transaction> listTransaction = argument.getAllValues();
+        when(transactionDAO.getAllTransaction("0123456789", 50L, 3000L)).thenReturn(listTransaction);
+
+        assertEquals(2, listTransaction.size());
+        assertEquals(1000, listTransaction.get(0).getBalace(), 0.01);
         assertEquals(2000L, listTransaction.get(1).getTime());
     }
 
