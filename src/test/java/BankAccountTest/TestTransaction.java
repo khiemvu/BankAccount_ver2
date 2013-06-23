@@ -60,7 +60,7 @@ public class TestTransaction {
         when(transactionDAO.getAllTransaction("0123456789")).thenReturn(listTransaction);
 
         assertEquals(2, listTransaction.size());
-        assertEquals(100, listTransaction.get(0).getBalace());
+        assertEquals(100, listTransaction.get(0).getBalace(), 0.01);
         assertEquals(2000L, listTransaction.get(1).getTime());
     }
 
