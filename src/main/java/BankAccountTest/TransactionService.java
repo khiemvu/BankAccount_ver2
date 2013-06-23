@@ -14,14 +14,20 @@ public class TransactionService {
         //To change body of created methods use File | Settings | File Templates.
     }
 
-    public static Transaction deposit(String accNumber, long time, double amount, String deposit) {
-        Transaction transaction = new Transaction(accNumber, time, amount, deposit);//To change body of created methods use File | Settings | File Templates.
-        transactionDAO.save(transaction);
-        return transaction;
-    }
+//    public static Transaction deposit(String accNumber, long time, double amount, String deposit) {
+//        Transaction transaction = new Transaction(accNumber, time, amount, deposit);//To change body of created methods use File | Settings | File Templates.
+//        transactionDAO.save(transaction);
+//        return transaction;
+//    }
+//
+//    public static Transaction withdraw(String accNumber, long time, int amount, String withdraw) {
+//        Transaction transaction = new Transaction(accNumber, time, amount, withdraw);
+//        transactionDAO.save(transaction);
+//        return transaction;//To change body of created methods use File | Settings | File Templates.
+//    }
 
-    public static Transaction withdraw(String accNumber, long time, int amount, String withdraw) {
-        Transaction transaction = new Transaction(accNumber, time, amount, withdraw);
+    public static Transaction doTransaction(String accNumber, long time, double amount, String des) {
+        Transaction transaction = new Transaction(accNumber, time, amount, des);
         transactionDAO.save(transaction);
         return transaction;//To change body of created methods use File | Settings | File Templates.
     }
